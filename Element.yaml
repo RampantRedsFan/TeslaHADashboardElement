@@ -411,6 +411,40 @@ elements:
           top: 84.7%
           left: 55%
           color: orange
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_charger
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: sensor.blue_car_charging_rate
+        attribute: time_left
+        suffix: m Until Complete to 
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 84%
+          left: 44%
+          font-size: 100%
+          font-weight: normal
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_charger
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: number.blue_car_charge_limit
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 84%
+          left: 66%
+          font-size: 100%
+          font-weight: normal
+          color: '#039be5'
   - type: custom:bar-card
     entity: sensor.blue_car_battery
     severity:
