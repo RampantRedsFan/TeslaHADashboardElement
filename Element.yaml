@@ -161,34 +161,6 @@ elements:
           color: '#039be5'
   - type: conditional
     conditions:
-      - entity: climate.blue_car_hvac_climate_system
-        state: 'off'
-    elements:
-      - type: icon
-        icon: mdi:fan-off
-        tap_action: none
-        double_tap_action: none
-        hold_action: none
-        style:
-          top: 7%
-          left: 58%
-          color: rgb(30,30,30)
-  - type: conditional
-    conditions:
-      - entity: climate.blue_car_hvac_climate_system
-        state: heat_cool
-    elements:
-      - type: icon
-        icon: mdi:air-conditioner
-        tap_action: none
-        double_tap_action: none
-        hold_action: none
-        style:
-          top: 7%
-          left: 58%
-          color: '#039be5'
-  - type: conditional
-    conditions:
       - entity: binary_sensor.blue_car_doors
         state: 'on'
     elements:
@@ -338,7 +310,12 @@ elements:
           color: '#039be5'
   - type: state-label
     entity: sensor.blue_car_temperature_inside
-    tap_action: none
+    tap_action:
+      action: call-service
+      service: climate.turn_on
+      service_data: {}
+      target:
+        entity_id: climate.blue_car_hvac_climate_system
     double_tap_action: none
     hold_action: none
     style:
@@ -347,17 +324,39 @@ elements:
       font-size: 100%
       font-weight: normal
       color: rgb(100,100,100)
-  - type: icon
-    icon: mdi:thermometer
-    tap_action: none
-    double_tap_action: none
-    hold_action: none
-    style:
-      top: 50%
-      left: 41%
-      font-size: 100%
-      font-weight: normal
-      color: rgb(100,100,100)
+  - type: conditional
+    conditions:
+      - entity: climate.blue_car_hvac_climate_system
+        state: 'off'
+    elements:
+      - type: icon
+        icon: mdi:fan-off
+        tap_action:
+          action: call-service
+          service: climate.turn_on
+          service_data: {}
+          target:
+            entity_id: climate.blue_car_hvac_climate_system
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 50%
+          left: 41%
+          color: rgb(100,100,100)
+  - type: conditional
+    conditions:
+      - entity: climate.blue_car_hvac_climate_system
+        state: heat_cool
+    elements:
+      - type: icon
+        icon: mdi:air-conditioner
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 50%
+          left: 41%
+          color: '#039be5'
   - type: state-label
     entity: sensor.blue_car_temperature_outside
     tap_action: none
