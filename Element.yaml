@@ -1,0 +1,446 @@
+type: picture-elements
+image: /local/ModelYTop.png
+elements:
+  - type: state-icon
+    entity: button.blue_car_force_data_update
+    style:
+      top: 6.5%
+      left: 10%
+      color: '#039be5'
+    tap_action:
+      action: call-service
+      service: button.press
+      service_data: {}
+      target:
+        entity_id: button.blue_car_force_data_update
+    double_tap_action: none
+    hold_action: none
+  - type: state-label
+    entity: sensor.blue_car_data_last_update_time
+    tap_action:
+      action: call-service
+      service: button.press
+      service_data: {}
+      target:
+        entity_id: button.blue_car_force_data_update
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 96%
+      left: 53%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(100,100,100)
+    prefix: 'Last update: '
+  - type: state-label
+    entity: device_tracker.blue_car_location_tracker
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 7%
+      left: 92%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(150,150,150)
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_online
+        state: 'on'
+    elements:
+      - type: icon
+        icon: mdi:link-variant
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.5%
+          left: 83%
+          color: rgb(30,30,30)
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_online
+        state_not: 'on'
+      - entity: device_tracker.blue_car_location_tracker
+        state_not: home
+    elements:
+      - type: icon
+        icon: mdi:link-variant-off
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 6.5%
+          left: 83%
+          color: yellow
+  - type: conditional
+    conditions:
+      - entity: switch.blue_car_sentry_mode
+        state_not: 'on'
+      - entity: device_tracker.blue_car_location_tracker
+        state: home
+    elements:
+      - type: icon
+        icon: mdi:shield-alert-outline
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 77%
+          color: rgb(30,30,30)
+  - type: conditional
+    conditions:
+      - entity: switch.blue_car_sentry_mode
+        state: 'on'
+    elements:
+      - type: icon
+        icon: mdi:shield-car
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 77%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: lock.blue_car_doors
+        state: locked
+    elements:
+      - type: icon
+        icon: mdi:lock
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 70.5%
+          color: rgb(30,30,30)
+  - type: conditional
+    conditions:
+      - entity: lock.blue_car_doors
+        state_not: locked
+    elements:
+      - type: icon
+        icon: mdi:lock-open-variant
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 70.5%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: update.blue_car_software_update
+        state_not: 'on'
+    elements:
+      - type: icon
+        icon: mdi:upload-off
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 64%
+          color: rgb(30,30,30)
+  - type: conditional
+    conditions:
+      - entity: update.blue_car_software_update
+        state: 'on'
+    elements:
+      - type: icon
+        icon: mdi:upload
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 64%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: climate.blue_car_hvac_climate_system
+        state: 'off'
+    elements:
+      - type: icon
+        icon: mdi:fan-off
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 58%
+          color: rgb(30,30,30)
+  - type: conditional
+    conditions:
+      - entity: climate.blue_car_hvac_climate_system
+        state: heat_cool
+    elements:
+      - type: icon
+        icon: mdi:air-conditioner
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 7%
+          left: 58%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_doors
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: binary_sensor.blue_car_doors
+        attribute: Driver Rear
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 30%
+          left: 40%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_doors
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: binary_sensor.blue_car_doors
+        attribute: Driver Front
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 30%
+          left: 60%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_doors
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: binary_sensor.blue_car_doors
+        attribute: Passenger Rear
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 70%
+          left: 40%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_doors
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: binary_sensor.blue_car_doors
+        attribute: Passenger Front
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 70%
+          left: 60%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: cover.blue_car_frunk
+        state_not: closed
+    elements:
+      - type: state-label
+        entity: cover.blue_car_frunk
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 50%
+          left: 85%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: cover.blue_car_trunk
+        state_not: closed
+    elements:
+      - type: state-label
+        entity: cover.blue_car_trunk
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 50%
+          left: 21%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: cover.blue_car_charger_door
+        state: open
+    elements:
+      - type: icon
+        icon: mdi:ev-plug-tesla
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 25%
+          left: 21%
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: cover.blue_car_charger_door
+        state_not: open
+    elements:
+      - type: icon
+        icon: mdi:ev-plug-tesla
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 25%
+          left: 21%
+          color: white
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_charger
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: sensor.blue_car_charging_rate
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 20%
+          left: 21%
+          font-size: 100%
+          font-weight: normal
+          color: '#039be5'
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_charger
+        state: 'on'
+    elements:
+      - type: state-label
+        entity: binary_sensor.blue_car_charger
+        attribute: charging_state
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 16%
+          left: 21%
+          font-size: 100%
+          font-weight: normal
+          color: '#039be5'
+  - type: state-label
+    entity: sensor.blue_car_temperature_inside
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 50%
+      left: 50%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(100,100,100)
+  - type: icon
+    icon: mdi:thermometer
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 50%
+      left: 41%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(100,100,100)
+  - type: state-label
+    entity: sensor.blue_car_temperature_outside
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 23%
+      left: 80%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(100,100,100)
+  - type: icon
+    icon: mdi:thermometer
+    tap_action: none
+    double_tap_action: none
+    hold_action: none
+    style:
+      top: 23%
+      left: 71%
+      font-size: 100%
+      font-weight: normal
+      color: rgb(100,100,100)
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_ischarging
+        state: 'on'
+      - entity: device_tracker.blue_car_location_tracker
+        state: home
+    elements:
+      - type: icon
+        icon: mdi:home-lightning-bolt-outline
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 84.7%
+          left: 55%
+          color: orange
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.blue_car_ischarging
+        state: 'on'
+      - entity: device_tracker.blue_car_location_tracker
+        state_not: home
+    elements:
+      - type: icon
+        icon: mdi:ev-station
+        tap_action: none
+        double_tap_action: none
+        hold_action: none
+        style:
+          top: 84.7%
+          left: 55%
+          color: orange
+  - type: custom:bar-card
+    entity: sensor.blue_car_battery
+    severity:
+      - color: Red
+        from: 0
+        to: 10
+      - color: Orange
+        from: 11
+        to: 20
+      - color: Green
+        from: 21
+        to: 100
+    entity_row: true
+    positions:
+      icon: 'off'
+      name: 'off'
+      indicator: 'off'
+    animation:
+      state: 'on'
+      speed: 5
+    height: 5px
+    width: 500px
+    tap_action: none
+    hold_action: none
+    double_tap_action: none
+    stack: vertical
+    style:
+      top: 1%
+      left: 50%
+      font-size: 100%
+      font-weight: normal
+      color: white
