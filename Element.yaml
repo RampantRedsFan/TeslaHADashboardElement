@@ -341,7 +341,7 @@ elements:
         hold_action: none
         style:
           top: 50%
-          left: 41%
+          left: 39%
           color: rgb(100,100,100)
   - type: conditional
     conditions:
@@ -355,7 +355,7 @@ elements:
         hold_action: none
         style:
           top: 50%
-          left: 41%
+          left: 39%
           color: '#039be5'
   - type: state-label
     entity: sensor.blue_car_temperature_outside
@@ -419,16 +419,17 @@ elements:
       - type: state-label
         entity: sensor.blue_car_charging_rate
         attribute: time_left
-        suffix: m Until Complete to 
+        suffix: h Until Complete
         tap_action: none
         double_tap_action: none
         hold_action: none
         style:
-          top: 84%
-          left: 44%
+          top: 88%
+          left: 50%
           font-size: 100%
           font-weight: normal
           color: '#039be5'
+# Blue Charge Limit at bottom of screen
   - type: conditional
     conditions:
       - entity: binary_sensor.blue_car_charger
@@ -436,12 +437,13 @@ elements:
     elements:
       - type: state-label
         entity: number.blue_car_charge_limit
+        prefix: "Charge Limit: "
         tap_action: none
         double_tap_action: none
         hold_action: none
         style:
-          top: 84%
-          left: 66%
+          top: 82%
+          left: 50%
           font-size: 100%
           font-weight: normal
           color: '#039be5'
